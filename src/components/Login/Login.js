@@ -12,31 +12,34 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    console.log("this effect runs once")
-  },[])
+    console.log("this effect runs once");
+  }, []);
 
-  useEffect(() => {
-   const indetifier= setTimeout(() => {
-      console.log("time out")
-      setFormIsValid(
-        enteredEmail.includes("@") && enteredPassword.trim().length > 6
-      );
-    }, 500);
-    return () => {
-      console.log("clean up");
-      clearTimeout(indetifier)
-    };
-  }, [enteredPassword, enteredEmail]);
+  // useEffect(() => {
+  //   const indetifier = setTimeout(() => {
+  //     console.log("time out");
+  //     setFormIsValid(
+  //       enteredEmail.includes("@") && enteredPassword.trim().length > 6
+  //     );
+  //   }, 500);
+  //   return () => {
+  //     console.log("clean up");
+  //     clearTimeout(indetifier);
+  //   };
+  // }, [enteredPassword, enteredEmail]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
+    setFormIsValid(
+      event.target.value.includes("@") && enteredPassword.trim().length > 6
+    );
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
 
     setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes("@")
+      enteredEmail.includes("@") && event.target.value.trim().length > 6
     );
   };
 
