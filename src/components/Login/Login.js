@@ -55,6 +55,7 @@ const Login = (props) => {
       clearTimeout(indetifier);
     };
   }, [emailIsValid, passwordIsValid]);
+  
   const emailChangeHandler = (event) => {
     // setEnteredEmail(event.target.value);
     dispatchEmail({ type: "USER_INPUT", val: event.target.value });
